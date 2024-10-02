@@ -1,20 +1,19 @@
-package com.trip.happyTravel.Common.enception;
+package com.trip.happytravel.Common.enception;
 
-import com.trip.happyTravel.Common.errocode.ErrorCode;
+import com.trip.happytravel.Common.errocode.ErrorCode;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.http.HttpStatus;
 
 @Getter
 @Setter
-public class ErrorResponse {
+public class CommonResponse {
 
     private final int status;
     private final String message;
     private final String code;
 
 
-    public ErrorResponse(ErrorCode errorCode) {
+    public CommonResponse(ErrorCode errorCode) {
         this.status = errorCode.getStatus();
         this.message = errorCode.getMessage();
         this.code = errorCode.getErrorCode();

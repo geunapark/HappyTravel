@@ -1,4 +1,4 @@
-package com.trip.happyTravel.Common.entity;
+package com.trip.happytravel.Common.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -8,9 +8,9 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "userTb")
+@Table(name = "USER_TB")
 @Getter @Setter
-public class UserColumnEntity {
+public class UserEntity {
 
     @Id
     private String userId;

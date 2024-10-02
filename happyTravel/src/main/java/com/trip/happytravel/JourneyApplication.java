@@ -1,4 +1,4 @@
-package com.trip.happyTravel;
+package com.trip.happytravel;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -1,4 +1,4 @@
-package com.trip.happyTravel.partner;
+package com.trip.happytravel.partner;
 
 public interface PartnerRepository {
 }

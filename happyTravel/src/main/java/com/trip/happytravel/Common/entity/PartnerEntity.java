@@ -1,6 +1,5 @@
-package com.trip.happyTravel.Common.entity;
+package com.trip.happytravel.Common.entity;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
@@ -8,9 +7,9 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "partnaerTb")
+@Table(name = "PARTNAER_Tb")
 @Getter @Setter
-public class PartnerColumEntity {
+public class PartnerEntity {
 
     @Id
     private String partnerId;

@@ -1,4 +1,4 @@
-package com.trip.happyTravel;
+package com.trip.happytravel;
 
 
 class JourneyApplicationTests {
