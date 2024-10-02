@@ -26,10 +26,10 @@ public class UserDto {
     private String sociaEmail;
 
     @NotBlank(message = "1031")
+    @Size(min = 11 , max = 11 , message = "1032")
     @Pattern(regexp = "^[0-9]+$" , message = "1032")
-    private String userPhoneNumber;
+    private String phoneNo;
 
     @NotBlank(message = "1041")
-    @Pattern(regexp = "^[a-zA-Z0-9]+$",message = "1042")
     private String userNickName;
 }

@@ -1,4 +1,4 @@
-package com.trip.happytravel.Common.enception;
+package com.trip.happytravel.Common.exception;
 
 import com.trip.happytravel.Common.errocode.ErrorCode;
 import lombok.Getter;
@@ -6,7 +6,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class CommonResponse {
+public class CommonResponse extends Throwable {
 
     private final int status;
     private final String message;
