@@ -1,8 +1,8 @@
 package com.trip.happytravel.user;
 
-import com.trip.happytravel.Common.errocode.ErrorCode;
-import com.trip.happytravel.Common.exception.CommonResponse;
-import com.trip.happytravel.Common.entity.UserEntity;
+import com.trip.happytravel.common.errocode.ErrorCode;
+import com.trip.happytravel.common.exception.CommonResponse;
+import com.trip.happytravel.common.entity.UserEntity;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

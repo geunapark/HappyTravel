@@ -1,4 +1,4 @@
-package com.trip.happytravel.Common.errocode;
+package com.trip.happytravel.common.errocode;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

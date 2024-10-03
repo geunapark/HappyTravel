@@ -1,8 +1,6 @@
-package com.trip.happytravel.Common.handler;
+package com.trip.happytravel.common.handler;
 
-import ch.qos.logback.core.spi.ErrorCodes;
-import com.trip.happytravel.Common.errocode.ErrorCode;
-import com.trip.happytravel.Common.exception.CommonResponse;
+import com.trip.happytravel.common.exception.CommonResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -10,7 +8,6 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import java.util.DuplicateFormatFlagsException;
 import java.util.HashMap;
 import java.util.Map;
 

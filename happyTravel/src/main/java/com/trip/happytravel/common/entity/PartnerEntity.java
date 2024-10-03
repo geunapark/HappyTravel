@@ -1,4 +1,4 @@
-package com.trip.happytravel.Common.entity;
+package com.trip.happytravel.common.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;

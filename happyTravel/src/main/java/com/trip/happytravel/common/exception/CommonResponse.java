@@ -1,6 +1,6 @@
-package com.trip.happytravel.Common.exception;
+package com.trip.happytravel.common.exception;
 
-import com.trip.happytravel.Common.errocode.ErrorCode;
+import com.trip.happytravel.common.errocode.ErrorCode;
 import lombok.Getter;
 import lombok.Setter;
 

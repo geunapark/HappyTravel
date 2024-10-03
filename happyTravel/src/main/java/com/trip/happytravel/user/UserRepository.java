@@ -1,6 +1,6 @@
 package com.trip.happytravel.user;
 
-import com.trip.happytravel.Common.entity.UserEntity;
+import com.trip.happytravel.common.entity.UserEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UserRepository extends JpaRepository<UserEntity, String> {

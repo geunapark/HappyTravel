@@ -1,4 +1,4 @@
-package com.trip.happytravel.Common.security;
+package com.trip.happytravel.common.security;
 
 public class SecurtyConfig {
 }
