@@ -8,6 +8,8 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 
 @Entity
 @Table(name = "USER_TB")
@@ -40,12 +42,14 @@ public class UserEntity {
     private String redUser;
 
     @Column
+    @CreatedDate
     private String regDtm;
 
     @Column
     private String updtUser;
 
     @Column
+    @LastModifiedDate
     private String updtDtm;
 
     @Column
