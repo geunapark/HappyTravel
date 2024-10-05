@@ -4,16 +4,15 @@ import com.trip.happytravel.common.errocode.ErrorCode;
 import lombok.Getter;
 
 @Getter
-public class CommonException extends Throwable {
+public class CommonException extends RuntimeException {
 
-    private final int status;
-    private final String message;
-    private final String code;
+   private final ErrorCode errorCode;
 
+   public CommonException(ErrorCode errorCode){
+       this.errorCode = errorCode;
+   }
 
-    public CommonException(ErrorCode errorCode) {
-        this.status = errorCode.getStatus();
-        this.message = errorCode.getMessage();
-        this.code = errorCode.getErrorCode();
-    }
+   public ErrorCode getErrorCode(){
+       return errorCode;
+   }
 }

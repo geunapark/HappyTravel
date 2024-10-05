@@ -1,10 +1,13 @@
 package com.trip.happytravel.common.errocode;
 
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.experimental.FieldDefaults;
 
 @Getter
-@AllArgsConstructor  //Loombok에서 자동생성해주는 어노테이션 [생성자 자동으로 생성해줌]
+@AllArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE)//Loombok에서 자동생성해주는 어노테이션 [생성자 자동으로 생성해줌]
 public enum ErrorCode {
 
     //0000

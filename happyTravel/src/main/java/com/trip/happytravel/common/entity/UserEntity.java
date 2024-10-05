@@ -20,10 +20,10 @@ public class UserEntity {
     @Id
     private String userId;
 
-    @Column
+    @Column(nullable = false)
     private String userPwd;
 
-    @Column
+    @Column(nullable = false)
     private String userEmail;
 
     @Column
@@ -35,7 +35,7 @@ public class UserEntity {
     @Column
     private String pwdUpdDt;
 
-    @Column
+    @Column(nullable = false)
     private String phoneNo;
 
     @Column
@@ -52,7 +52,7 @@ public class UserEntity {
     @LastModifiedDate
     private String updtDtm;
 
-    @Column
+    @Column(nullable = false)
     private String userNickName;
 
     // 칼럼 추가해야 함
