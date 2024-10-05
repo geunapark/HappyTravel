@@ -1,14 +1,8 @@
 package com.trip.happytravel.common.response;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.trip.happytravel.common.errocode.ErrorCode;
+import com.trip.happytravel.common.errorcode.ErrorCode;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
-import org.springframework.validation.FieldError;
-import org.springframework.web.ErrorResponse;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Getter @Setter

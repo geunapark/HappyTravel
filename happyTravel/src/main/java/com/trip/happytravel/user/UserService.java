@@ -1,7 +1,7 @@
 package com.trip.happytravel.user;
 
 import com.trip.happytravel.common.entity.UserEntity;
-import com.trip.happytravel.common.errocode.ErrorCode;
+import com.trip.happytravel.common.errorcode.ErrorCode;
 import com.trip.happytravel.common.exception.CommonException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
