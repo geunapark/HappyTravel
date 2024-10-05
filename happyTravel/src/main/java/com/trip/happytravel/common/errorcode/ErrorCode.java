@@ -1,10 +1,13 @@
 package com.trip.happytravel.common.errorcode;
 
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.experimental.FieldDefaults;
 
 @Getter
 @AllArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE)//Loombok에서 자동생성해주는 어노테이션 [생성자 자동으로 생성해줌]
 public enum ErrorCode {
 
     //0000
@@ -41,7 +44,8 @@ public enum ErrorCode {
     INVALID_NICKNAME_FORMAT(400 , "1042" , "닉네임 조건이 맞지 않습니다"),
     NICKNAME_NOT_AVAILABLE(409 , "1043" , "사용할 수 없는 닉네임입니다.");
 
-    private int status;
+    private final int status;
     private final String errorCode;    // 코드 필드 추가
     private final String message; // 메시지 필드 추가
+
 }

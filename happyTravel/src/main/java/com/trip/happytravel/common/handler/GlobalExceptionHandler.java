@@ -1,12 +1,9 @@
 package com.trip.happytravel.common.handler;
 
-import ch.qos.logback.core.spi.ErrorCodes;
-import com.trip.happytravel.common.errocode.ErrorCode;
 import com.trip.happytravel.common.exception.CommonException;
 import com.trip.happytravel.common.response.CommonResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
