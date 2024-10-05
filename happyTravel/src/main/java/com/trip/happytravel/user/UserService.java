@@ -2,7 +2,7 @@ package com.trip.happytravel.user;
 
 import com.trip.happytravel.common.entity.UserEntity;
 import com.trip.happytravel.common.errocode.ErrorCode;
-import com.trip.happytravel.common.exception.CommonResponse;
+import com.trip.happytravel.common.exception.CommonException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,11 +14,11 @@ public class UserService {
     private final UserRepository userRepository;
 
     @Transactional
-    public UserEntity createUser(UserDto requestDto) throws CommonResponse {
+    public UserEntity createUser(UserDto requestDto) throws CommonException {
         // ID 중복검사
         UserEntity findUserById = userRepository.findUserByUserId(requestDto.getUserId());
         if (findUserById != null) {
-            throw new CommonResponse(ErrorCode.ID_ALREADY_EXISTS); // 에러코드 1003
+            throw new CommonException(ErrorCode.ID_ALREADY_EXISTS); // 에러코드 1003
         }
 
         // insert할 userEntity 생성
