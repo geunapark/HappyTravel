@@ -25,8 +25,7 @@ public enum ErrorCode {
     PASSWORD_CANNOT_BE_EMPTY(400 , "1011" , "비밀번호는 공백일 수 없습니다."),
     PASSWORD_VALIDATION_FAILED_LENGTH(400, "1012", "비밀번호는 8글자 이상 20글자 이내로 작성해야 합니다."),
     PASSWORD_VALIDATION_FAILED_FORMAT(400, "1013", "비밀번호 조건이 맞지 않습니다."),
-    PASSWORD_MUSMATCH(400,"1014" , "비밀번호가 일치하지 않습니다"),
-    PASSWORD_MISMATCH(400 , "1015" , "비밀번호가 일치하지 않습니다."),
+    PASSWORD_MUSMATCH(400,"1014" , "비밀번호가 일치하지 않습니다."),
     TOO_MANY_FAILED_ATTEMPTS(403 , "1016" , "비밀번호 5회이상 틀리셨습니다."),
 
     //이메일 에러코드 1021 - 1030

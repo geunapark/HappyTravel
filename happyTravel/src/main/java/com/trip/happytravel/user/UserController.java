@@ -3,10 +3,12 @@ package com.trip.happytravel.user;
 import com.trip.happytravel.common.entity.UserEntity;
 import com.trip.happytravel.common.errorcode.ErrorCode;
 import com.trip.happytravel.common.exception.CommonException;
+import com.trip.happytravel.common.response.CommonResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -28,5 +30,10 @@ public class UserController {
         return ResponseEntity.ok(response);
     }
 
+    @GetMapping("/api/users/login")
+    public ResponseEntity<CommonResponse<UserEntity>> login(@RequestBody UserDto requestDto){
+        UserEntity user = userService.login(requestDto.getUserId() , requestDto.getUserEmail());
+        return  ResponseEntity.ok(new CommonResponse<>(ErrorCode.SUCCESS, user));
+    }
 
 }
