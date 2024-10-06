@@ -23,6 +23,8 @@ dependencies {
 //	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.3'
+	//스웨거 의존성 추가
+	implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.0.4'
 
 	//LomBok
 	compileOnly 'org.projectlombok:lombok'
@@ -30,6 +32,7 @@ dependencies {
 
 	//MYSQL
 	runtimeOnly 'com.mysql:mysql-connector-j'
+
 
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter-test:3.0.3'

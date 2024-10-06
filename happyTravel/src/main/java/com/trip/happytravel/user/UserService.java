@@ -4,8 +4,11 @@ import com.trip.happytravel.common.entity.UserEntity;
 import com.trip.happytravel.common.errorcode.ErrorCode;
 import com.trip.happytravel.common.exception.CommonException;
 import lombok.RequiredArgsConstructor;
+import org.apache.catalina.User;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -34,6 +37,22 @@ public class UserService {
         userEntity = userRepository.save(userEntity); // 저장된 UserEntity 반환
 
         return userEntity;
+    }
+
+    //사용자 로그인 기능구현 서비스
+    public UserEntity login(String userId , String userEmail){
+        Optional<UserEntity> userEntity = userRepository.findById(userId);
+
+        if (userEntity.isPresent()){
+            UserEntity user = userEntity.get();
+            if (user.getUserEmail().equals(userEmail)){
+                return user;
+            }else {
+                throw new CommonException(ErrorCode.PASSWORD_MUSMATCH);
+            }
+        }else {
+            throw new CommonException(ErrorCode.USER_BLOCKED);
+        }
     }
 
 }
