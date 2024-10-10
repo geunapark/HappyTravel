@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<configuration>
+
+    <!--로그 출력패턴 : 로그 발생 시각을 연-월-일-시:분:초-->    <!--로그 스레드 이름을 보라색으로 출력-->
+    <!--CONSOLE_PATTERN 패턴을 정의 , 날짜 , 쓰레드 ,로그레벨 , 로거 이름 , 메시지등을 컬러별로 출력-->
+    <property name="CONSOLE_PATTERN" value="%d{yyyy-MM-dd HH:mm:ss.SSS} %magenta([%thread]) %highlight([%-3level]) %logger{5} - %msg %n" />
+    <!--파일에 저장될 로그 형식-->
+    <property name="ROLLING_PATTERN" value="%d{yyyy-MM-dd HH:mm:ss.SSS}  %logger{5} - %msg %n" />
+    <!--로그 저장 될 경로-->
+    <property name="LOG_PATH" value="C:\log\" />
+    <!--롤링 로그 파일 이름 형식-->
+    <property name="LOG_NAME_PATTERN" value="./log/application-%d{yyyy-MM-dd-HH-mm}.%i.log" />
+    <!--로그 파일 최대 크기-->
+    <property name="MAX_FILE_SIZE" value="1KB" />
+    <!--로그 파일 전체 크기 제한-->
+    <property name="TOTAL_SIZE" value="30MB" />
+    <!--최대 두개의 파일만 보존 오래된 로그는 삭제-->
+    <property name="MAX_HISTORY" value="2" />
+    <!--로그 레벨 설정-->
+    <property name="LOG_LEVEL" value="info"/>
+
+    <!--로그레벨은 로그중요도에 따라 로그의 범위를 설정 할 수 있음-->
+    <!--    ERROR : 심각한 오류가 발생했을 때 사용하며 , 프로그램이 정상적으로 실행되지 못할 때 사용된다-->
+    <!--    WARN : 경고성 메세지로 , 심각하지는 않지만 주의해야 할 상황이다-->
+    <!--    INFO : 일반적인 정보성 메세지 , 프로그램의 정상적인 흐름을 기록한다-->
+    <!--    DEBUG : 디버깅 목적으로 사용되며 , 개발자가 내부 상태를 파악하기 위해 기록한다-->
+    <!--    ex ) 변수 값 출력 , 메서드를 진입을 하였나 또는 종료하였나-->
+    <!--    TRACE : DEBUG보다 더 상세한 정보를 제공하며 , 세밀한 추적이 필요할 때 사용-->
+    <!--    -->
+    <!--    TRACE < DEBUG < INFO < WARN < ERROR-->
+
+    <!-- Console appender 설정 -->
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <Pattern>${CONSOLE_PATTERN}</Pattern>
+        </encoder>
+    </appender>
+
+    <appender name="ROLLING_LOG_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <encoder>
+            <pattern>${ROLLING_PATTERN}</pattern>
+        </encoder>
+        <!--로그 파일 경로 설정-->
+        <file>${LOG_PATH}/application.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_NAME_PATTERN}</fileNamePattern>
+            <maxHistory>${MAX_HISTORY}</maxHistory>
+            <maxFileSize>${MAX_FILE_SIZE}</maxFileSize>
+            <totalSizeCap>${TOTAL_SIZE}</totalSizeCap>
+        </rollingPolicy>
+    </appender>
+
+
+    <!--    특정 패키지나 클래스의 대해 더 세밀하게 로그를 관리하고자 할 때 사용된다-->
+    <!--    패키지를 적어준다음 로그 레벨을 DEBUG로 설정하였다 또한 부모로거에 로그가 전파되지 않도록 차단하였다-->
+    <logger name="com.trip.happytravel.user" level="INFO" additive="false" >
+        <appender-ref ref="CONSOLE"/>
+    </logger>
+
+    <!--로그 전역 셋팅-->
+    <root level="${LOG_LEVEL}">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="ROLLING_LOG_FILE"/>
+    </root>
+</configuration>
