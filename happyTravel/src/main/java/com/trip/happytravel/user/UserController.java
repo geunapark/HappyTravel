@@ -36,7 +36,7 @@ public class UserController {
     public ResponseEntity<CommonException> createUser(@Valid @RequestBody UserDto requestDto) throws CommonException {
         UserEntity userEntity = userService.createUser(requestDto);
         // 성공적인 응답
-        log.error("에러다 에러 ㅋㅋㅋ");
+        log.info("사용자 생성 성공: {}", userEntity);
         CommonException response = new CommonException(ErrorCode.SUCCESS);
         return ResponseEntity.ok(response);
     }
