@@ -55,16 +55,16 @@ public class UserController {
 //        return ResponseEntity.ok(new CommonResponse<>(ErrorCode.SUCCESS, user));
 //    }
 
-    //log테스트 진행중 결과는 성공적으로 나옴
+    //log테스트 결과는 성공적으로 나옴
     @GetMapping("/")
-    public String index(){
+    public void test(){
+        log.info("테스트 시작");
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        log.info("테스트 끝");
 
-        log.trace("TRACE");
-        log.debug("DEBUG");
-        log.info("INFO");
-        log.warn("WARN");
-        log.error("ERRor");
-
-        return "index";
     }
 }

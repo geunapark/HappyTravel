@@ -3,21 +3,29 @@
 
     <!--로그 출력패턴 : 로그 발생 시각을 연-월-일-시:분:초-->    <!--로그 스레드 이름을 보라색으로 출력-->
     <!--CONSOLE_PATTERN 패턴을 정의 , 날짜 , 쓰레드 ,로그레벨 , 로거 이름 , 메시지등을 컬러별로 출력-->
-    <property name="CONSOLE_PATTERN" value="%d{yyyy-MM-dd HH:mm:ss.SSS} %magenta([%thread]) %highlight([%-3level]) %logger{5} - %msg %n" />
+    <property name="CONSOLE_PATTERN"
+              value="[%X{request_id:-startup}] %d{yyyy-MM-dd HH:mm:ss.SSS} %magenta([%thread]) %highlight([%-3level]) %logger{5} - %msg %n" />
     <!--파일에 저장될 로그 형식-->
-    <property name="ROLLING_PATTERN" value="%d{yyyy-MM-dd HH:mm:ss.SSS}  %logger{5} - %msg %n" />
+    <property name="ROLLING_PATTERN"
+              value="%d{yyyy-MM-dd HH:mm:ss.SSS}  %logger{5} - %msg %n" />
     <!--로그 저장 될 경로-->
-    <property name="LOG_PATH" value="C:/dev/HappyTravel/happyTravel/log" />
+    <property name="LOG_PATH"
+              value="C:/dev/HappyTravel/happyTravel/log" />
     <!--롤링 로그 파일 이름 형식-->
-    <property name="LOG_NAME_PATTERN" value="C:/dev/HappyTravel/happyTravel/log/application-%d{yyyy-MM-dd-HH-mm}.%i.log" />
+    <property name="LOG_NAME_PATTERN"
+              value="C:/dev/HappyTravel/happyTravel/log/application-%d{yyyy-MM-dd-HH-mm}.%i.log" />
     <!--로그 파일 최대 크기-->
-    <property name="MAX_FILE_SIZE" value="10MB" />
+    <property name="MAX_FILE_SIZE"
+              value="10MB" />
     <!--로그 파일 전체 크기 제한-->
-    <property name="TOTAL_SIZE" value="30MB" />
+    <property name="TOTAL_SIZE"
+              value="30MB" />
     <!--최대 두개의 파일만 보존 오래된 로그는 삭제-->
-    <property name="MAX_HISTORY" value="2" />
+    <property name="MAX_HISTORY"
+              value="2" />
     <!--로그 레벨 설정-->
-    <property name="LOG_LEVEL" value="INFO"/>
+    <property name="LOG_LEVEL"
+              value="INFO"/>
 
     <!--로그레벨은 로그중요도에 따라 로그의 범위를 설정 할 수 있음-->
     <!--    ERROR : 심각한 오류가 발생했을 때 사용하며 , 프로그램이 정상적으로 실행되지 못할 때 사용된다-->
