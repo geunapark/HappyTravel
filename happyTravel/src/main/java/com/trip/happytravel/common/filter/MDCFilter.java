@@ -29,36 +29,42 @@ public class MDCFilter implements Filter {
 
 
     //Logger를 이용하고 log와 관련된 로거가 생성
-    private static final Logger log = LoggerFactory.getLogger(MDCFilter.class);
+    //  요청과 응답의 컨텍스트 정보(예: HTTP 메서드, URI, 응답 내용 등)를 로깅
+    private static final Logger logger = LoggerFactory.getLogger(MDCFilter.class);
 
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
             throws IOException, ServletException {
 
-        // HttpServletRequest와 HttpServletResponse로 다운캐스팅
-        HttpServletRequest httpRequest = (HttpServletRequest) request;
-        HttpServletResponse httpResponse = (HttpServletResponse) response;
-
-        // 요청 ID 생성 및 MDC에 저장
-        String reqId = UUID.randomUUID().toString();
-        MDC.put("reqId", reqId);
-        MDC.put("clientIp", request.getRemoteAddr()); // 클라이언트 IP 저장
-
         try {
-            // 요청 로그 출력
-            log.info("Incoming Request: {} {} from IP: {}",
-                    httpRequest.getMethod(), httpRequest.getRequestURI(), httpRequest.getRemoteAddr());
+            // HttpServletRequest 및 HttpServletResponse 변환
+            HttpServletRequest httpRequest = (HttpServletRequest) request;
+            HttpServletResponse httpResponse = (HttpServletResponse) response;
 
-            // 다음 필터로 요청 전달
+            //  사용자 ID를 요청 헤더에서 가져와 MDC에 추가
+            String userId = httpRequest.getHeader("X-User-Id");
+            if (userId != null) {
+                MDC.put("userId", userId);
+            }
+
+            // 요청 ID를 생성하여 MDC에 추가
+            UUID uuid = UUID.randomUUID();
+            MDC.put("request_id", uuid.toString());
+
+            // 요청의 URI와 HTTP 메서드를 MDC에 추가
+            String uri = httpRequest.getRequestURI();
+            String httpMethod = httpRequest.getMethod();
+
+            MDC.put("uri", uri);
+            MDC.put("httpMethod", httpMethod);
+
+            // 필터 체인을 계속 진행
             chain.doFilter(request, response);
-
-            // 응답 로그 출력
-            log.info("Response: Status {}", httpResponse.getStatus());
-
         } finally {
-            // MDC 정보 제거 (메모리 누수 방지)
+            // 요청이 끝난 후 MDC를 클리어
             MDC.clear();
         }
-    }
+
+    }// method
 }

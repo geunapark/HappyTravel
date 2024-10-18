@@ -3,6 +3,7 @@ package com.trip.happytravel.user;
 import com.trip.happytravel.common.entity.UserEntity;
 import com.trip.happytravel.common.errorcode.CustomErrorCode;
 import com.trip.happytravel.common.exception.CustomException;
+import com.trip.happytravel.common.response.CustomErrorResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,8 +23,7 @@ public class UserService {
         if (findUserById != null) {
             throw new CustomException(CustomErrorCode.ID_ALREADY_EXISTS); // 에러코드 1003
         }
-
-        // insert할 userEntity 생성
+        // Insert하는  userEntity 생성 후 값 넣어주기
         UserEntity userEntity = UserEntity.builder()
                 .userId(requestDto.getUserId())
                 .userPwd(requestDto.getUserPwd())

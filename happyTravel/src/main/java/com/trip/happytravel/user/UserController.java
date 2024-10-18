@@ -38,6 +38,7 @@ public class UserController {
 
         String reqId = MDC.get("reqId");
         log.info("cerateUser request : {}" ,reqId );
+
         UserEntity userEntity = userService.createUser(requestDto);
         
         //회원가입 성공 메세지 생성

@@ -6,7 +6,6 @@ import lombok.*;
 import lombok.experimental.FieldDefaults;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.ErrorResponse;
 
 @Getter
 @Builder
@@ -14,13 +13,14 @@ import org.springframework.web.ErrorResponse;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @NoArgsConstructor(access = AccessLevel.PROTECTED) // 기본 생성자 필요
-public class CustomErrorResponse<T> {
+public class CustomErrorResponse<T>  {
 
     //포스트맨에서 결과 나오는 타입 설정
     private HttpStatus status;
     private String code;
     private String message;
     private T data;
+
 
     //아직 T data를 사용안하기 때문에 주석처리
 //    public CustomErrorResponse(CustomErrorCode errorCode , T data){
