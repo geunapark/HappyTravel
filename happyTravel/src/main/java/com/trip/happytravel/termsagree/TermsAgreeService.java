@@ -26,12 +26,12 @@ public class TermsAgreeService {
 
         // 2. 약관 동의 엔티티 생성
         TermsAgreeEntity termsAgree = TermsAgreeEntity.builder()
-                .termsAgreePk(new TemplatePk(template.getTemplateSq(), requestDto.getUserType(), requestDto.getUserId())) // 복합키 설정
-                .template(template) // 템플릿 설정
+                .termsAgreePk(new TemplatePk(template.getTemplateSq(), requestDto.getUserType(), requestDto.getUserId()))  // 복합키 설정
+                .template(template)  // 템플릿 설정
                 .agreeFl(requestDto.getAgreeFl())
-                .agreeDt(LocalDate.now()) // LocalDate 타입으로 설정
+                .agreeDt(LocalDate.now())  // LocalDate 타입으로 설정
                 .regUser(requestDto.getRegUser())
-                .regDtm(LocalDateTime.now()) // LocalDateTime 타입으로 설정
+                .regDtm(LocalDateTime.now())  // LocalDateTime 타입으로 설정
                 .build();
 
         // 3. 저장
