@@ -1,10 +1,10 @@
 package com.trip.happytravel.user;
 
 import com.trip.happytravel.common.entity.UserEntity;
-import com.trip.happytravel.common.errorcode.ErrorCode;
-import com.trip.happytravel.common.exception.CommonException;
+import com.trip.happytravel.common.errorcode.CustomErrorCode;
+import com.trip.happytravel.common.exception.CustomException;
+import com.trip.happytravel.common.response.CustomErrorResponse;
 import lombok.RequiredArgsConstructor;
-import org.apache.catalina.User;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,14 +17,13 @@ public class UserService {
     private final UserRepository userRepository;
 
     @Transactional
-    public UserEntity createUser(UserDto requestDto) throws CommonException {
+    public UserEntity createUser(UserDto requestDto) throws CustomException {
         // ID 중복검사
         UserEntity findUserById = userRepository.findUserByUserId(requestDto.getUserId());
         if (findUserById != null) {
-            throw new CommonException(ErrorCode.ID_ALREADY_EXISTS); // 에러코드 1003
+            throw new CustomException(CustomErrorCode.ID_ALREADY_EXISTS); // 에러코드 1003
         }
-
-        // insert할 userEntity 생성
+        // Insert하는  userEntity 생성 후 값 넣어주기
         UserEntity userEntity = UserEntity.builder()
                 .userId(requestDto.getUserId())
                 .userPwd(requestDto.getUserPwd())
@@ -48,10 +47,10 @@ public class UserService {
             if (user.getUserEmail().equals(userEmail)){
                 return user;
             }else {
-                throw new CommonException(ErrorCode.PASSWORD_MUSMATCH);
+                throw new CustomException(CustomErrorCode.PASSWORD_MUSMATCH);
             }
         }else {
-            throw new CommonException(ErrorCode.USER_BLOCKED);
+            throw new CustomException(CustomErrorCode.USER_BLOCKED);
         }
     }
 

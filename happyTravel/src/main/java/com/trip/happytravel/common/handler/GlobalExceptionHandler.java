@@ -1,39 +1,50 @@
 package com.trip.happytravel.common.handler;
 
-import com.trip.happytravel.common.errorcode.ErrorCode;
-import com.trip.happytravel.common.exception.CommonException;
-import com.trip.happytravel.common.response.CommonResponse;
-import org.springframework.http.HttpStatus;
+import com.trip.happytravel.common.exception.CustomException;
+import com.trip.happytravel.common.response.CustomErrorResponse;
+import com.trip.happytravel.common.errorcode.CustomErrorCode;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import java.util.HashMap;
 import java.util.List;
-import java.util.stream.Collectors;
-
+import java.util.Map;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
-    //회원 dto유효성 검사 예외 핸들러
-    //MethodArgumentNotValidException 예외가 발생했을 때 이 메서드를 호출하도록 Spring에게 지시하는 것
-    @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<CommonResponse<Object>> handleValidationException(MethodArgumentNotValidException ex) {
-        // 유효성 검사 실패 시 처리 로직
-        String errorMessage = ex.getBindingResult()
-                .getFieldErrors()
-                .stream()
-                .map(error -> error.getDefaultMessage())
-                .findFirst()
-                .orElse("유효성 검사 실패");
+    //유저 회원가입 dto 유효성 검사 처리
+    @ExceptionHandler(value = {MethodArgumentNotValidException.class})
+    public ResponseEntity<CustomErrorResponse> handleUserSigUpValidationException(MethodArgumentNotValidException ex){
+        BindingResult bindingResult = ex.getBindingResult();
+        List<FieldError> fieldErrors = bindingResult.getFieldErrors();
+        FieldError fieldError = fieldErrors.get(0);
+        String errorCode = fieldError.getDefaultMessage();
 
-        // 에러 코드에 맞는 CommonResponse 생성
-        CommonResponse<Object> response = new CommonResponse<>(ErrorCode.ID_VALIDATION_FAILED_FORMAT); // 원하는 에러코드로 변경 가능
-        response.setMessage(errorMessage); // 유효성 검사 실패 메시지 설정
+        CustomErrorCode error = CustomErrorCode.findErrorCode(errorCode);
 
-        return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+        CustomErrorResponse customResp = CustomErrorResponse.builder()
+                .status(error.getStatus())
+                .code(error.getErrorCode())
+                .message(error.getMessage())
+                .build();
+
+        return CustomErrorResponse.createResponseEntity(customResp);
     }
 
+    @ExceptionHandler(CustomException.class)
+    public ResponseEntity<CustomErrorResponse> handleCustomException(CustomException ex) {
+        CustomErrorCode errorCode = ex.getCustomErrorCode(); // 발생한 에러 코드 가져오기
+
+        // CustomErrorResponse 객체 생성
+        CustomErrorResponse<Object> response = new CustomErrorResponse<>(errorCode);
+
+        // 에러 응답 반환
+        return CustomErrorResponse.createResponseEntity(response);
+    }
 }

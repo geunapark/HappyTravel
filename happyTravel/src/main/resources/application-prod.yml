@@ -1,0 +1,4 @@
+profile-name: prod
+spring:
+  jackson:
+    encoding: UTF-8
